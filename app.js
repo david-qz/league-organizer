@@ -8,7 +8,7 @@ let user = null;
 // Action Handlers
 async function handlePageLoad() {
     user = getUser();
-    protectPage(user);
+    if (protectPage(user)) return;
 
     display();
 }
@@ -17,7 +17,7 @@ async function handleSignOut() {
     signOut();
 }
 
-// Components 
+// Components
 const User = createUser(
     document.querySelector('#user'),
     { handleSignOut }
