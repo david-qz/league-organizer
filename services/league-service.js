@@ -53,6 +53,25 @@ export async function getTeams() {
     return data;
 }
 
+export async function addPlayer(name, teamId) {
+    const { data, error } = await client
+        .from(PLAYER_TABLE)
+        .insert({
+            name: name,
+            team_id: teamId
+        })
+        .single();
+
+    // TODO: alias the incoming data
+
+    if (error) {
+        logError('addPlayer()', error);
+        return null;
+    }
+
+    return data;
+}
+
 function logError(context, error) {
     // eslint-disable-next-line no-console
     console.error(`${context}: ${error.message}`);

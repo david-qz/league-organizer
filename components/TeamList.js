@@ -23,10 +23,10 @@ export default function createTeamList(root, { handleAddPlayer, handleDeletePlay
                 <button>add</button>
             `;
 
-            addPlayerForm.addEventListener('submit', e => {
+            addPlayerForm.addEventListener('submit', async e => {
                 e.preventDefault();
                 const formData = new FormData(addPlayerForm);
-                handleAddPlayer(formData.get('name'), team);
+                await handleAddPlayer(formData.get('name'), team);
             });
         }
     };

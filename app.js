@@ -3,7 +3,7 @@ import { protectPage } from './utils.js';
 
 // Services
 import { getUser, signOut } from './services/auth-service.js';
-import { getTeams } from './services/league-service.js';
+import { addPlayer, getTeams } from './services/league-service.js';
 
 // Components
 import createUser from './components/User.js';
@@ -27,7 +27,12 @@ async function handleSignOut() {
 }
 
 async function handleAddPlayer(name, team) {
-    console.log(name, team.id);
+    const teamId = team.id;
+
+    const newPlayer = await addPlayer(name, teamId);
+    teams.find(val => val.id === teamId)?.players.push(newPlayer);
+
+    display();
 }
 
 // Components
