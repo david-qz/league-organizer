@@ -1,9 +1,18 @@
 #team-list {
+    --table-color: 170, 184, 196;
+    --alpha: 0.4;
     width: 400px;
     margin: auto;
 }
 
-table {
-    --table-color: 170, 184, 196;
-    --alpha: 0.4;
+#team-list > div {
+    margin: 25px 0;
+}
+
+.table-heading {
+    padding: 10px;
+    text-align: center;
+    font-size: large;
+    border-bottom: 1px dashed black;
+    background-color: rgb(var(--table-color));
 }

@@ -1,27 +1,13 @@
-export default function createTeamTable(team, handleAddPlayer, handleDeletePlayer) {
+export default function createTeamTable(team, handleDeletePlayer) {
     const table = document.createElement('table');
-    table.append(createTableHeading(team));
-
-    const tbody = document.createElement('tbody');
-    table.append(tbody);
-
-    for (const player of team.players) {
-        tbody.append(createPlayerRow(player));
-    }
+    table.append(createTableHead());
+    table.append(createTableBody(team.players, handleDeletePlayer));
 
     return table;
 }
 
-function createTableHeading(team) {
+function createTableHead() {
     const thead = document.createElement('thead');
-
-    const teamTr = document.createElement('tr');
-    thead.append(teamTr);
-    teamTr.classList.add('table-heading');
-
-    const teamTd = document.createElement('td');
-    teamTr.append(teamTd);
-    teamTd.textContent = team.name;
 
     const headingTr = document.createElement('tr');
     thead.append(headingTr);
@@ -33,12 +19,24 @@ function createTableHeading(team) {
     return thead;
 }
 
-function createPlayerRow(player) {
+function createTableBody(players) {
+    const tbody = document.createElement('tbody');
+
+    for (const player of players) {
+        tbody.append(createPlayerRow(player));
+    }
+
+    return tbody;
+}
+
+function createPlayerRow(player, handleDeletePlayer) {
     const tr = document.createElement('tr');
 
     const nameTd = document.createElement('td');
     tr.append(nameTd);
     nameTd.textContent = player.name;
+
+    // TODO: create a delete button
 
     return tr;
 }

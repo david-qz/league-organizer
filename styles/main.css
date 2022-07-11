@@ -52,26 +52,15 @@ footer {
 
 table {
     width: 100%;
-    margin: 25px 0;
     border-collapse: collapse;
     border: 1px solid rgb(var(--table-color));
-}
-
-.table-heading {
-    text-align: center;
-    font-size: large;
-    border-bottom: 1px dashed black;
 }
 
 thead {
     background-color: rgb(var(--table-color));
 }
 
-thead td {
-    padding: 10px;
-}
-
-tbody td {
+td {
     padding: 5px;
 }
 
