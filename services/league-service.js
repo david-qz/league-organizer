@@ -72,6 +72,20 @@ export async function addPlayer(name, teamId) {
     return data;
 }
 
+export async function deletePlayer(player) {
+    const { data, error } = await client
+        .from(PLAYER_TABLE)
+        .delete()
+        .match({ id: player.id });
+
+    if (error) {
+        logError('deletePlayer()', error);
+        return null;
+    }
+
+    return data;
+}
+
 function logError(context, error) {
     // eslint-disable-next-line no-console
     console.error(`${context}: ${error.message}`);

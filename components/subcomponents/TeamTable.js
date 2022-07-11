@@ -12,9 +12,11 @@ function createTableHead() {
     const headingTr = document.createElement('tr');
     thead.append(headingTr);
 
-    const nameTd = document.createElement('td');
-    headingTr.append(nameTd);
+    const nameTd = headingTr.insertCell();
     nameTd.textContent = 'Name';
+
+    const actionsTd = headingTr.insertCell();
+    actionsTd.textContent = 'Actions';
 
     return thead;
 }
@@ -32,11 +34,17 @@ function createTableBody(players, handleDeletePlayer) {
 function createPlayerRow(player, handleDeletePlayer) {
     const tr = document.createElement('tr');
 
-    const nameTd = document.createElement('td');
-    tr.append(nameTd);
+    const nameTd = tr.insertCell();
     nameTd.textContent = player.name;
 
-    // TODO: create a delete button
+    const actionsTd = tr.insertCell();
+    const deleteButton = document.createElement('button');
+    actionsTd.append(deleteButton);
+    deleteButton.textContent = 'delete';
+
+    deleteButton.addEventListener('click', () => {
+        handleDeletePlayer(player);
+    });
 
     return tr;
 }

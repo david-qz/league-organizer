@@ -3,7 +3,7 @@ import { protectPage } from './utils.js';
 
 // Services
 import { getUser, signOut } from './services/auth-service.js';
-import { addPlayer, getTeams } from './services/league-service.js';
+import { getTeams, addPlayer, deletePlayer } from './services/league-service.js';
 
 // Components
 import createUser from './components/User.js';
@@ -35,6 +35,16 @@ async function handleAddPlayer(name, team) {
     display();
 }
 
+async function handleDeletePlayer(player) {
+    await deletePlayer(player);
+
+    const teamPlayers = teams.find(val => val.id === player.teamId)?.players;
+    const index = teamPlayers.indexOf(player);
+    if (index !== -1) teamPlayers.splice(index, 1);
+
+    display();
+}
+
 // Components
 const User = createUser(
     document.querySelector('#user'),
@@ -43,7 +53,7 @@ const User = createUser(
 
 const TeamList = createTeamList(
     document.querySelector('#team-list'),
-    { handleAddPlayer }
+    { handleAddPlayer, handleDeletePlayer }
 );
 
 function display() {
