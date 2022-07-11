@@ -9,10 +9,15 @@
     margin: 25px 0;
 }
 
-.table-heading {
+#team-list .table-heading {
     padding: 10px;
     text-align: center;
     font-size: large;
     border-bottom: 1px dashed black;
+    background-color: rgb(var(--table-color));
+}
+
+#team-list form {
+    padding: 10px;
     background-color: rgb(var(--table-color));
 }

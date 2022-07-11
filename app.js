@@ -26,6 +26,10 @@ async function handleSignOut() {
     signOut();
 }
 
+async function handleAddPlayer(name, team) {
+    console.log(name, team.id);
+}
+
 // Components
 const User = createUser(
     document.querySelector('#user'),
@@ -34,7 +38,7 @@ const User = createUser(
 
 const TeamList = createTeamList(
     document.querySelector('#team-list'),
-    {}
+    { handleAddPlayer }
 );
 
 function display() {

@@ -1,4 +1,4 @@
-export default function createTeamTable(team, handleDeletePlayer) {
+export default function createTeamTable(team, { handleDeletePlayer }) {
     const table = document.createElement('table');
     table.append(createTableHead());
     table.append(createTableBody(team.players, handleDeletePlayer));
@@ -19,11 +19,11 @@ function createTableHead() {
     return thead;
 }
 
-function createTableBody(players) {
+function createTableBody(players, handleDeletePlayer) {
     const tbody = document.createElement('tbody');
 
     for (const player of players) {
-        tbody.append(createPlayerRow(player));
+        tbody.append(createPlayerRow(player, handleDeletePlayer));
     }
 
     return tbody;

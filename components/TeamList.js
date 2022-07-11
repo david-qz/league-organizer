@@ -1,6 +1,6 @@
 import createTeamTable from './subcomponents/TeamTable.js';
 
-export default function createTeamList(root, handleAddPlayer, handleDeletePlayer) {
+export default function createTeamList(root, { handleAddPlayer, handleDeletePlayer }) {
     return ({ teams }) => {
         root.innerHTML = '';
 
@@ -13,8 +13,21 @@ export default function createTeamList(root, handleAddPlayer, handleDeletePlayer
             heading.classList.add('table-heading');
             heading.textContent = team.name;
 
-            const table = createTeamTable(team, handleAddPlayer, handleDeletePlayer);
+            const table = createTeamTable(team, { handleDeletePlayer });
             container.append(table);
+
+            const addPlayerForm = document.createElement('form');
+            container.append(addPlayerForm);
+            addPlayerForm.innerHTML = `
+                <input name="name" placeholder="player name" required>
+                <button>add</button>
+            `;
+
+            addPlayerForm.addEventListener('submit', e => {
+                e.preventDefault();
+                const formData = new FormData(addPlayerForm);
+                handleAddPlayer(formData.get('name'), team);
+            });
         }
     };
 }
