@@ -1,0 +1,9 @@
+#team-list {
+    width: 400px;
+    margin: auto;
+}
+
+table {
+    --table-color: 170, 184, 196;
+    --alpha: 0.4;
+}

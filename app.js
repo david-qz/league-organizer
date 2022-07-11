@@ -1,15 +1,24 @@
-import { getUser, signOut } from './services/auth-service.js';
+// Utils
 import { protectPage } from './utils.js';
+
+// Services
+import { getUser, signOut } from './services/auth-service.js';
+import { getTeams } from './services/league-service.js';
+
+// Components
 import createUser from './components/User.js';
+import createTeamList from './components/TeamList.js';
 
 // State
 let user = null;
+let teams = [];
 
 // Action Handlers
 async function handlePageLoad() {
     user = getUser();
     if (protectPage(user)) return;
 
+    teams = await getTeams();
     display();
 }
 
@@ -23,9 +32,14 @@ const User = createUser(
     { handleSignOut }
 );
 
+const TeamList = createTeamList(
+    document.querySelector('#team-list'),
+    {}
+);
+
 function display() {
     User({ user });
-
+    TeamList({ teams });
 }
 
 handlePageLoad();
