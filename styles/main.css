@@ -100,3 +100,21 @@ td {
 tbody tr:nth-child(2n) {
     background-color: rgba(var(--table-color), var(--alpha));
 }
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.contents-button {
+    border: none;
+    background-color: transparent;
+    color: #333;
+}
+
+.contents-button:hover {
+    transform: rotateZ(15deg) scale(1.15);
+}

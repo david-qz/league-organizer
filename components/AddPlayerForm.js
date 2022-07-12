@@ -4,7 +4,7 @@ export default function createAddPlayerForm(root, { handleAddPlayer }) {
             <form>
                 <label>
                     Name
-                    <input required name="name" placeholder="player name">
+                    <input required name="name" placeholder="Name">
                 </label>
                 <label>
                     Team
@@ -12,7 +12,7 @@ export default function createAddPlayerForm(root, { handleAddPlayer }) {
                         <option value="" selected disabled>Select Team</option>
                     </select>
                 </label>
-                <button>add</button>
+                <button>Add Player</button>
             </form>
         `;
 

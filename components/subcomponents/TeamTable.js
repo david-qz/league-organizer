@@ -15,6 +15,9 @@ function createTableHead() {
     const nameTd = headingTr.insertCell();
     nameTd.textContent = 'Name';
 
+    const dateTd = headingTr.insertCell();
+    dateTd.textContent = 'Date Joined';
+
     const actionsTd = headingTr.insertCell();
     actionsTd.textContent = 'Actions';
 
@@ -37,14 +40,23 @@ function createPlayerRow(player, handleDeletePlayer) {
     const nameTd = tr.insertCell();
     nameTd.textContent = player.name;
 
+    const dateTd = tr.insertCell();
+    dateTd.textContent = new Date(player.createdAt).toLocaleDateString();
+
     const actionsTd = tr.insertCell();
+    actionsTd.classList.add('text-center');
+
     const deleteButton = document.createElement('button');
     actionsTd.append(deleteButton);
-    deleteButton.textContent = 'delete';
+    deleteButton.classList.add('contents-button');
 
     deleteButton.addEventListener('click', () => {
         handleDeletePlayer(player);
     });
+
+    const trashIcon = document.createElement('i');
+    deleteButton.append(trashIcon);
+    trashIcon.classList.add('fa-regular', 'fa-trash-can', 'fa-lg');
 
     return tr;
 }
