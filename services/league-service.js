@@ -1,10 +1,10 @@
-import { client } from './client.js';
+import { client, unwrapResponse } from './client.js';
 
 const PLAYER_TABLE = 'players';
 const TEAM_TABLE = 'teams';
 
 export async function getPlayers() {
-    const { data, error } = await client
+    const response = await client
         .from(PLAYER_TABLE)
         .select(`
             id,
@@ -20,16 +20,11 @@ export async function getPlayers() {
         `)
         .order('name');
 
-    if (error) {
-        logError('getPlayers()', error);
-        return null;
-    }
-
-    return data;
+    return unwrapResponse(response);
 }
 
 export async function getTeams() {
-    const { data, error } = await client
+    const response = await client
         .from(TEAM_TABLE)
         .select(`
             id,
@@ -45,16 +40,11 @@ export async function getTeams() {
         `)
         .order('name');
 
-    if (error) {
-        logError('getTeams()', error);
-        return null;
-    }
-
-    return data;
+    return unwrapResponse(response);
 }
 
 export async function addPlayer(name, teamId) {
-    const { data, error } = await client
+    const response = await client
         .from(PLAYER_TABLE)
         .insert({
             name: name,
@@ -64,29 +54,14 @@ export async function addPlayer(name, teamId) {
 
     // TODO: alias the incoming data
 
-    if (error) {
-        logError('addPlayer()', error);
-        return null;
-    }
-
-    return data;
+    return unwrapResponse(response);
 }
 
 export async function deletePlayer(player) {
-    const { data, error } = await client
+    const response = await client
         .from(PLAYER_TABLE)
         .delete()
         .match({ id: player.id });
 
-    if (error) {
-        logError('deletePlayer()', error);
-        return null;
-    }
-
-    return data;
-}
-
-function logError(context, error) {
-    // eslint-disable-next-line no-console
-    console.error(`${context}: ${error.message}`);
+    return unwrapResponse(response);
 }
