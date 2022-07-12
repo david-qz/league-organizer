@@ -1,5 +1,7 @@
 #team-list {
-    --table-color: 170, 184, 196;
+    --table-color: hsl(208, 18%, 72%);
+    --table-row-color-odd: hsl(208, 25%, 88%);
+    --table-row-color-even: hsl(208, 18%, 80%);
     --alpha: 0.4;
     margin: auto;
 }
@@ -13,10 +15,10 @@
     text-align: center;
     font-size: large;
     border-bottom: 1px dashed black;
-    background-color: rgb(var(--table-color));
+    background-color: var(--table-color);
 }
 
 #team-list form {
     padding: 10px;
-    background-color: rgb(var(--table-color));
+    background-color: var(--table-color);
 }

@@ -1,5 +1,7 @@
 #player-list {
-    --table-color: 232, 126, 114;
+    --table-color: hsl(6, 72%, 68%);
+    --table-row-color-odd: hsl(6, 72%, 90%);
+    --table-row-color-even: hsl(6, 72%, 85%);
     --alpha: 0.4;
     margin: 25px auto;
 }
