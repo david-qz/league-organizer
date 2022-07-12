@@ -12,10 +12,21 @@
 
 #team-list .table-heading {
     padding: 10px;
-    text-align: center;
     font-size: large;
     border-bottom: 1px dashed black;
     background-color: var(--table-color);
+    display: grid;
+    grid-template-columns: 1fr min-content 1fr;
+    gap: 5px;
+    align-items: center;
+    justify-items: center;
+}
+
+.table-heading img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    justify-self: right;
 }
 
 #team-list form {

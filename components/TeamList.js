@@ -11,7 +11,12 @@ export default function createTeamList(root, { handleAddPlayer, handleDeletePlay
             const heading = document.createElement('div');
             container.append(heading);
             heading.classList.add('table-heading');
-            heading.textContent = team.name;
+
+            const img = document.createElement('img');
+            img.src = team.avatar;
+            img.alt = `${team.name} team logo`;
+
+            heading.append(img, team.name);
 
             const table = createTeamTable(team, { handleDeletePlayer });
             container.append(table);
