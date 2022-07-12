@@ -19,7 +19,7 @@ async function handlePageLoad() {
     user = getUser();
     if (protectPage(user)) return;
 
-    teams = await getTeams();
+    teams = await getTeams() ?? [];
     display();
 }
 
@@ -31,17 +31,21 @@ async function handleAddPlayer(name, team) {
     const teamId = team.id;
 
     const newPlayer = await addPlayer(name, teamId);
-    teams.find(val => val.id === teamId)?.players.push(newPlayer);
+    if (newPlayer) {
+        teams.find(val => val.id === teamId)?.players.push(newPlayer);
+    }
 
     display();
 }
 
 async function handleDeletePlayer(player) {
-    await deletePlayer(player);
+    const deletedPlayer = await deletePlayer(player);
 
-    const teamPlayers = teams.find(val => val.id === player.teamId)?.players;
-    const index = teamPlayers.indexOf(player);
-    if (index !== -1) teamPlayers.splice(index, 1);
+    if (deletedPlayer) {
+        const teamPlayers = teams.find(val => val.id === player.teamId)?.players;
+        const index = teamPlayers.indexOf(player);
+        if (index !== -1) teamPlayers.splice(index, 1);
+    }
 
     display();
 }

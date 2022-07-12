@@ -65,7 +65,8 @@ export async function deletePlayer(player) {
     const response = await client
         .from(PLAYER_TABLE)
         .delete()
-        .match({ id: player.id });
+        .match({ id: player.id })
+        .single();
 
     return unwrapResponse(response);
 }
