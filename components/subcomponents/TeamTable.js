@@ -20,6 +20,7 @@ function createTableHead() {
 
     const actionsTd = headingTr.insertCell();
     actionsTd.textContent = 'Actions';
+    actionsTd.classList.add('text-center');
 
     return thead;
 }
