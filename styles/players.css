@@ -2,5 +2,30 @@
     --table-color: 232, 126, 114;
     --alpha: 0.4;
     width: 400px;
-    margin: auto;
+    margin: 25px auto;
+}
+
+#add-player-form {
+    width: 400px;
+    margin: 25px auto;
+    padding: 10px;
+    background-color: rgb(170, 184, 196);
+}
+
+#add-player-form > form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#add-player-form label {
+    display: contents;
+}
+
+#add-player-form input, #add-player-form select {
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+#add-player-form button {
+    align-self: flex-end;
 }
