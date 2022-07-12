@@ -27,9 +27,34 @@
     width: 50px;
     object-fit: contain;
     justify-self: right;
+    font-size: small;
 }
 
 #team-list form {
     padding: 10px;
     background-color: var(--table-color);
+}
+
+#add-team-form {
+    margin: 25px auto;
+    padding: 10px;
+    background-color: hsl(6, 72%, 68%);
+}
+
+#add-team-form > form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#add-team-form label {
+    display: contents;
+}
+
+#add-team-form input, #add-team-form select {
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+#add-team-form button {
+    align-self: flex-end;
 }

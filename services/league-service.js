@@ -61,3 +61,17 @@ export async function deletePlayer(player) {
 
     return data;
 }
+
+export async function addTeam(name) {
+    const response = await client
+        .from(TEAM_TABLE)
+        .insert({
+            name
+        })
+        .single();
+
+    const data = unwrapResponse(response);
+    if (data) snakeToCamelRecursive(data);
+
+    return data;
+}

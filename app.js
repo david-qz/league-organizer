@@ -3,12 +3,13 @@ import { protectPage } from './utils.js';
 
 // Services
 import { getUser, signOut } from './services/auth-service.js';
-import { getTeams, addPlayer, deletePlayer } from './services/league-service.js';
+import { getTeams, addPlayer, deletePlayer, addTeam } from './services/league-service.js';
 
 // Components
 import createUser from './components/User.js';
 import createNavigation from './components/Navigation.js';
 import createTeamList from './components/TeamList.js';
+import createAddTeamForm from './components/AddTeamForm.js';
 
 // State
 let user = null;
@@ -50,23 +51,36 @@ async function handleDeletePlayer(player) {
     display();
 }
 
+async function handleAddTeam(name) {
+    const team = await addTeam(name);
+
+    if (team) {
+        team.players = [];
+        teams.push(team);
+    }
+
+    display();
+}
+
 // Components
 const User = createUser(
     document.querySelector('#user'),
     { handleSignOut }
 );
-
 const Navigation = createNavigation(document.querySelector('#nav'));
-
 const TeamList = createTeamList(
     document.querySelector('#team-list'),
     { handleAddPlayer, handleDeletePlayer }
 );
+const AddTeamForm = createAddTeamForm(document.querySelector('#add-team-form'), {
+    handleAddTeam
+});
 
 function display() {
     User({ user });
     Navigation();
     TeamList({ teams });
+    AddTeamForm();
 }
 
 handlePageLoad();
