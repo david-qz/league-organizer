@@ -1,5 +1,5 @@
 // Utils
-import { protectPage } from './utils.js';
+import { protectPage, lexicographicCompare } from './utils.js';
 
 // Services
 import { getUser, signOut } from './services/auth-service.js';
@@ -77,6 +77,7 @@ const AddTeamForm = createAddTeamForm(document.querySelector('#add-team-form'), 
 });
 
 function display() {
+    teams.sort((a, b) => lexicographicCompare(a.name, b.name));
     User({ user });
     Navigation();
     TeamList({ teams });
