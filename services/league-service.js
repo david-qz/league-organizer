@@ -1,3 +1,4 @@
+import { snakeToCamelRecursive } from '../utils.js';
 import { client, unwrapResponse } from './client.js';
 
 const PLAYER_TABLE = 'players';
@@ -52,9 +53,12 @@ export async function addPlayer(name, teamId) {
         })
         .single();
 
-    // TODO: alias the incoming data
+    const data = unwrapResponse(response);
+    if (data) {
+        snakeToCamelRecursive(data);
+    }
 
-    return unwrapResponse(response);
+    return data;
 }
 
 export async function deletePlayer(player) {

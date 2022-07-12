@@ -16,3 +16,23 @@ export function getAuthRedirect() {
     const redirectUrl = encodeURIComponent(location.href);
     return `/auth/?redirectUrl=${redirectUrl.toString()}`;
 }
+
+export function snakeToCamel(string) {
+    return string.replace(/_(\w)/g, (match, capture) => {
+        return capture.toUpperCase();
+    });
+}
+
+export function snakeToCamelRecursive(object) {
+    for (const [property, value] of Object.entries(object)) {
+        if (typeof value === 'object') {
+            snakeToCamelRecursive(value);
+        }
+
+        const camelCaseProperty = snakeToCamel(property);
+        delete object[property];
+        object[camelCaseProperty] = value;
+    }
+
+    return object;
+}
