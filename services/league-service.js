@@ -8,40 +8,30 @@ export async function getPlayers() {
     const response = await client
         .from(PLAYER_TABLE)
         .select(`
-            id,
-            createdAt: created_at,
-            name,
-            teamId: team_id,
-            team: ${TEAM_TABLE}(
-                id,
-                createdAt: created_at,
-                name,
-                avatar
-            )
+            *,
+            team: ${TEAM_TABLE}(*)
         `)
         .order('name');
 
-    return unwrapResponse(response);
+    const data = unwrapResponse(response);
+    if (data) snakeToCamelRecursive(data);
+
+    return data;
 }
 
 export async function getTeams() {
     const response = await client
         .from(TEAM_TABLE)
         .select(`
-            id,
-            createdAt: created_at,
-            name,
-            avatar,
-            ${PLAYER_TABLE}(
-                id,
-                createdAt: created_at,
-                name,
-                teamId: team_id
-            )
+            *,
+            ${PLAYER_TABLE}(*)
         `)
         .order('name');
 
-    return unwrapResponse(response);
+    const data = unwrapResponse(response);
+    if (data) snakeToCamelRecursive(data);
+
+    return data;
 }
 
 export async function addPlayer(name, teamId) {
@@ -54,9 +44,7 @@ export async function addPlayer(name, teamId) {
         .single();
 
     const data = unwrapResponse(response);
-    if (data) {
-        snakeToCamelRecursive(data);
-    }
+    if (data) snakeToCamelRecursive(data);
 
     return data;
 }
@@ -68,5 +56,8 @@ export async function deletePlayer(player) {
         .match({ id: player.id })
         .single();
 
-    return unwrapResponse(response);
+    const data = unwrapResponse(response);
+    if (data) snakeToCamelRecursive(data);
+
+    return data;
 }

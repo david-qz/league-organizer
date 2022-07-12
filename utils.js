@@ -25,7 +25,7 @@ export function snakeToCamel(string) {
 
 export function snakeToCamelRecursive(object) {
     for (const [property, value] of Object.entries(object)) {
-        if (typeof value === 'object') {
+        if (value !== null && typeof value === 'object') {
             snakeToCamelRecursive(value);
         }
 
