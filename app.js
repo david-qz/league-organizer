@@ -7,6 +7,7 @@ import { getTeams, addPlayer, deletePlayer } from './services/league-service.js'
 
 // Components
 import createUser from './components/User.js';
+import createNavigation from './components/Navigation.js';
 import createTeamList from './components/TeamList.js';
 
 // State
@@ -51,6 +52,8 @@ const User = createUser(
     { handleSignOut }
 );
 
+const Navigation = createNavigation(document.querySelector('#nav'));
+
 const TeamList = createTeamList(
     document.querySelector('#team-list'),
     { handleAddPlayer, handleDeletePlayer }
@@ -58,6 +61,7 @@ const TeamList = createTeamList(
 
 function display() {
     User({ user });
+    Navigation();
     TeamList({ teams });
 }
 
