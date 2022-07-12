@@ -1,9 +1,9 @@
 // Utils
-import { protectPage } from '../utils.js';
+import { protectPage, lexicographicCompare } from '../utils.js';
 
 // Services
 import { getUser, signOut } from '../services/auth-service.js';
-import { getPlayers } from '../services/league-service.js';
+import { getPlayers, addPlayer } from '../services/league-service.js';
 
 // Components
 import createUser from '../components/User.js';
@@ -37,16 +37,29 @@ async function handleSignOut() {
     signOut();
 }
 
+async function handleAddPlayer(name, teamId) {
+    const player = await addPlayer(name, teamId);
+    player.team = teams().find(x => x.id === teamId);
+
+    players.push(player);
+
+    display();
+}
+
 // Components
 const User = createUser(
     document.querySelector('#user'),
     { handleSignOut }
 );
 const Navigation = createNavigation(document.querySelector('#nav'));
-const AddPlayerForm = createAddPlayerForm(document.querySelector('#add-player-form'));
+const AddPlayerForm = createAddPlayerForm(document.querySelector('#add-player-form'), {
+    handleAddPlayer
+});
 const PlayerList = createPlayerList(document.querySelector('#player-list'));
 
 function display() {
+    players.sort((a, b) => lexicographicCompare(a.name, b.name));
+
     User({ user });
     Navigation();
     AddPlayerForm({ teams: teams() });

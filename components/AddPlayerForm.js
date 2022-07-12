@@ -1,4 +1,4 @@
-export default function createAddPlayerForm(root) {
+export default function createAddPlayerForm(root, { handleAddPlayer }) {
     return ({ teams }) => {
         root.innerHTML = `
             <form>
@@ -8,8 +8,8 @@ export default function createAddPlayerForm(root) {
                 </label>
                 <label>
                     Team
-                    <select name="team">
-                        <option required value="" selected disabled></option>
+                    <select required name="team">
+                        <option value="" selected disabled>Select Team</option>
                     </select>
                 </label>
                 <button>add</button>
@@ -23,5 +23,16 @@ export default function createAddPlayerForm(root) {
             option.value = team.id;
             option.textContent = team.name;
         }
+
+        const form = root.querySelector('form');
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            await handleAddPlayer(
+                formData.get('name'),
+                parseInt(formData.get('team'))
+            );
+        });
     };
 }

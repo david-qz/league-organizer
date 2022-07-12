@@ -36,3 +36,13 @@ export function snakeToCamelRecursive(object) {
 
     return object;
 }
+
+// Case insensitive lexicographic comparison function for use with Array.prototype.sort().
+// Uses whatever ordering the > and < operators use for strings.
+export function lexicographicCompare(a, b) {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+    if (a > b) return 1;
+    if (a < b) return -1;
+    return 0;
+}
