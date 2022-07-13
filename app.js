@@ -3,7 +3,7 @@ import { protectPage, lexicographicCompare } from './utils.js';
 
 // Services
 import { getUser, signOut } from './services/auth-service.js';
-import { getTeams, addPlayer, deletePlayer, addTeam } from './services/league-service.js';
+import { getTeams, addPlayer, deletePlayer, addTeam, uploadTeamLogo } from './services/league-service.js';
 
 // Components
 import createUser from './components/User.js';
@@ -51,8 +51,9 @@ async function handleDeletePlayer(player) {
     display();
 }
 
-async function handleAddTeam(name) {
-    const team = await addTeam(name);
+async function handleAddTeam(name, logo) {
+    let logoUrl = logo && logo.name ? await uploadTeamLogo(name, logo) : null;
+    const team = await addTeam(name, logoUrl);
 
     if (team) {
         team.players = [];

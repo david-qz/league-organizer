@@ -62,16 +62,46 @@ export async function deletePlayer(player) {
     return data;
 }
 
-export async function addTeam(name) {
+export async function addTeam(name, logoUrl = null) {
+    // Only add an avatar property if the logoUrl isn't null so that supabase can fill in the
+    // default url.
+    const team = {
+        name
+    };
+    if (logoUrl) team.avatar = logoUrl;
+
     const response = await client
         .from(TEAM_TABLE)
-        .insert({
-            name
-        })
+        .insert(team)
         .single();
 
     const data = unwrapResponse(response);
     if (data) snakeToCamelRecursive(data);
 
     return data;
+}
+
+export async function uploadTeamLogo(teamName, logoFile) {
+    const bucketName = 'avatars';
+    const ext = logoFile.type.split('/')[1];
+    const filename = `${teamName}-logo.${ext}`;
+
+    // Using upsert false to prevent the user from overwriting another team's image by creating
+    // a team with the same name.
+    // TODO: handle same named teams with different avatars (or prohibit duplicate names elsewhere).
+    const response = await client.storage
+        .from(bucketName)
+        .upload(filename, logoFile, {
+            cacheControl: '3600',
+            upsert: false
+        });
+
+    if (unwrapResponse(response) === null)
+        return null;
+
+    const { data } = await client.storage
+        .from(bucketName)
+        .getPublicUrl(filename);
+
+    return data.publicURL;
 }
