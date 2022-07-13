@@ -51,13 +51,19 @@ async function handleDeletePlayer(player) {
     display();
 }
 
-async function handleAddTeam(name, logo) {
-    let logoUrl = logo && logo.name ? await uploadTeamLogo(name, logo) : null;
-    const team = await addTeam(name, logoUrl);
+async function handleAddTeam(name, logoFile) {
+    const team = { name };
 
-    if (team) {
-        team.players = [];
-        teams.push(team);
+    if (logoFile.size > 0) {
+        let logoUrl = await uploadTeamLogo(name, logoFile);
+        if (logoUrl) team.avatar = logoUrl;
+    }
+
+    const newTeam = await addTeam(team);
+
+    if (newTeam) {
+        newTeam.players = [];
+        teams.push(newTeam);
     }
 
     display();

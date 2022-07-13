@@ -62,14 +62,7 @@ export async function deletePlayer(player) {
     return data;
 }
 
-export async function addTeam(name, logoUrl = null) {
-    // Only add an avatar property if the logoUrl isn't null so that supabase can fill in the
-    // default url.
-    const team = {
-        name
-    };
-    if (logoUrl) team.avatar = logoUrl;
-
+export async function addTeam(team) {
     const response = await client
         .from(TEAM_TABLE)
         .insert(team)
