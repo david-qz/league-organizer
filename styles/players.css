@@ -1,0 +1,31 @@
+#player-list {
+    --table-color: hsl(6, 72%, 68%);
+    --table-row-color-odd: hsl(6, 72%, 90%);
+    --table-row-color-even: hsl(6, 72%, 85%);
+    --alpha: 0.4;
+    margin: 25px auto;
+}
+
+#add-player-form {
+    margin: 25px auto;
+    padding: 10px;
+    background-color: rgb(170, 184, 196);
+}
+
+#add-player-form > form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#add-player-form label {
+    display: contents;
+}
+
+#add-player-form input, #add-player-form select {
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+#add-player-form button {
+    align-self: flex-end;
+}

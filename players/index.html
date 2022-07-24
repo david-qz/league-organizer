@@ -13,39 +13,30 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/auth.css" />
-    <title>Auth</title>
+    <link rel="stylesheet" href="../styles/players.css" />
+    <title>League Organizer</title>
 </head>
 
 <body>
     <header>
         <div>
             <img src="../assets/html_css_js.png">
-            <h1>Auth</h1>
+            <h1>League Organizer</h1>
+        </div>
+        <div>
+            <div id="nav"></div>
+            <div id="user"></div>
         </div>
     </header>
 
     <main>
-        <form id="auth-form">
-            <h2></h2>
-            <label>
-                Email
-                <input type="email" name="email" required />
-            </label>
-            <label>
-                Password
-                <input type="password" name="password" required />
-            </label>
-            <button></button>
-            <p class="error"></p>
-            <p class="change-type"></p>
-        </form>
-
+        <section id="add-player-form"></section>
+        <section id="player-list"></section>
     </main>
 
     <footer>&copy;2022 Aspiring Software Developer</footer>
 
-    <script type="module" src="auth.js"></script>
+    <script type="module" src="./app.js"></script>
 </body>
 
 </html>

@@ -11,21 +11,39 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
+    <script src="https://kit.fontawesome.com/58276b05a8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="./styles/home.css" />
-    <title>Cool Web App</title>
+    <title>League Organizer</title>
 </head>
 
 <body>
     <header>
-        <img src="./assets/html_css_js.png">
-        <h1>Cool Web App</h1>
-        <div id="user"></div>
+        <div>
+            <img src="./assets/html_css_js.png">
+            <h1>League Organizer</h1>
+        </div>
+        <div>
+            <div id="nav"></div>
+            <div id="user"></div>
+        </div>
     </header>
 
     <main>
-
+        <section id="team-list"></section>
+        <section id="add-team-form">
+            <form>
+                <label>
+                    Team Name
+                    <input required name="name" placeholder="Name">
+                </label>
+                <Image>
+                    <input name="logo" type="file" accept="image/*">
+                </Image>
+                <button>Add Team</button>
+            </form>
+        </section>
     </main>
 
     <footer>&copy;2022 Aspiring Software Developer</footer>

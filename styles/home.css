@@ -1,0 +1,60 @@
+#team-list {
+    --table-color: hsl(208, 18%, 72%);
+    --table-row-color-odd: hsl(208, 25%, 88%);
+    --table-row-color-even: hsl(208, 18%, 80%);
+    --alpha: 0.4;
+    margin: auto;
+}
+
+#team-list > div {
+    margin: 25px 0;
+}
+
+#team-list .table-heading {
+    padding: 10px;
+    font-size: large;
+    border-bottom: 1px dashed black;
+    background-color: var(--table-color);
+    display: grid;
+    grid-template-columns: 1fr min-content 1fr;
+    gap: 5px;
+    align-items: center;
+    justify-items: center;
+}
+
+.table-heading img {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    justify-self: right;
+    font-size: small;
+}
+
+#team-list form {
+    padding: 10px;
+    background-color: var(--table-color);
+}
+
+#add-team-form {
+    margin: 25px auto;
+    padding: 10px;
+    background-color: hsl(6, 72%, 68%);
+}
+
+#add-team-form > form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#add-team-form label {
+    display: contents;
+}
+
+#add-team-form input, #add-team-form select {
+    margin-top: 4px;
+    margin-bottom: 10px;
+}
+
+#add-team-form button {
+    align-self: flex-end;
+}

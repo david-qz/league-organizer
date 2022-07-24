@@ -2,11 +2,11 @@
     --background: rgb(224, 234, 247);
     --header-background: white;
     --footer-background: rgb(243, 242, 242);
+    --footer-height: 40px;
 }
 
 body {
-    height: 100%;
-    padding-bottom: 30px;
+    margin-bottom: var(--footer-height);
     font-family: 'Rubik', san-serif;
     background: var(--background);
 }
@@ -15,12 +15,58 @@ header {
     position: sticky;
     top: 0;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
     background-color: var(--header-background);
 }
 
+header > * {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+}
+
+#nav {
+    display: flex;
+    background-color: rgb(99, 122, 98);
+    color: white;
+    border: 1px solid black;
+    font-size: 0.8em;
+}
+
+#nav a {
+    color: inherit;
+    border-collapse: collapse;
+    text-decoration: none;
+    padding: 10px;
+}
+
+#nav a:first-child {
+    border-right: 1px solid black;
+}
+
+#nav a:visited {
+    color: inherit;
+}
+
+#nav .current {
+    background-color: rgb(133, 163, 140);
+}
+
+@media (max-width: 550px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-bottom: 10px;
+    }
+}
+
+main {
+    max-width: 500px;
+    margin: auto;
+    padding: 10px;
+}
+
 #user {
-    flex-grow: 2;
     margin-right: 20px;
     text-align: right;
     display: grid;
@@ -44,8 +90,49 @@ footer {
     bottom: 0;
     left: 0;
     right: 0;
+    height: var(--footer-height);
     padding: 10px;
     display: flex;
     justify-content: flex-end;
     background-color: var(--footer-background);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--table-color);
+}
+
+thead {
+    background-color: var(--table-color);
+}
+
+td {
+    padding: 5px;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: var(--table-row-color-odd);
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--table-row-color-even);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.contents-button {
+    border: none;
+    background-color: transparent;
+    color: #333;
+}
+
+.contents-button:hover {
+    transform: rotateZ(15deg) scale(1.15);
 }
